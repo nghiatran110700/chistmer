@@ -6,1104 +6,934 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css"
+        integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+
+        .container svg {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+
+    <!-- aa2 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hover-animation {
+            animation: hover 1.75s ease-in-out infinite;
+        }
+
+        #castle {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            /* background: radial-gradient(#293c4d, #001920); */
+            background: radial-gradient(pink, #1111);
+            overflow: hidden;
+        }
+
+        #castle #table {
+            position: absolute;
+            left: calc(50% - 200px);
+            top: calc(50% - 50px);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(#a3727e, #af7279, #a16674);
+            border-radius: 100%;
+            border-bottom: 80px solid #623c53;
+            transform: scaleY(0.225);
+        }
+
+        #castle .shade-wrap {
+            position: absolute;
+            left: calc(50% - 100px);
+            top: calc(52% - 250px);
+            width: 200px;
+            height: 400px;
+        }
+
+        #castle .shade-wrap #shade-main {
+            position: absolute;
+            left: 20px;
+            top: 100px;
+            width: 160px;
+            height: 300px;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.6);
+            border-top-left-radius: 50% 30%;
+            border-top-right-radius: 50% 30%;
+            border-bottom: none;
+            transform: perspective(200px) rotateX(8deg) scale(1.075, 1);
+        }
+
+        #castle .shade-wrap #shade-main #shade-handle-big {
+            position: absolute;
+            left: 55px;
+            top: -14px;
+            width: 50px;
+            height: 30px;
+            border-radius: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.7);
+            transform: scaleY(0.9);
+        }
+
+        #castle .shade-wrap #shade-main #shade-handle-small {
+            position: absolute;
+            left: 70px;
+            top: -33px;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: none;
+        }
+
+        #castle .shade-wrap #shade-main #bottom-shade {
+            position: absolute;
+            bottom: -20px;
+            width: 100%;
+            height: 40px;
+            transform: scaleY(0.5);
+            border-radius: 100%;
+            background: radial-gradient(#d287a5, #da9db6, #985e74);
+            animation: floatAnimate 1.75s ease-in-out infinite;
+        }
+
+        #castle .shade-wrap #shade-main-reflections {
+            position: relative;
+            left: 20px;
+            top: 100px;
+            width: 160px;
+            height: 300px;
+            border-top-left-radius: 50% 30%;
+            border-top-right-radius: 50% 30%;
+            border-bottom: none;
+            background-color: #6d6179;
+            transform: perspective(200px) rotateX(8deg) scale(1.075, 1);
+            opacity: 0.15;
+        }
+
+        #castle .shade-wrap #shade-main-reflections:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-top-right-radius: 50% 30%;
+            border-right: 20px solid rgba(255, 255, 255, 0.5);
+            transform: scale(0.7, 0.85);
+            filter: blur(5px);
+        }
+
+        #castle .shade-wrap #shade-main-reflections:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 50% 30%;
+            border-left: 8px solid rgba(255, 255, 255, 0.6);
+            transform: scale(0.85, 0.85);
+            filter: blur(5px);
+        }
+
+        #castle .shade-wrap #flower-wrap {
+            position: relative;
+            top: -50px;
+        }
+
+        #castle .shade-wrap #flower-wrap #stem {
+            position: absolute;
+            left: 82px;
+            top: 187px;
+            width: 100px;
+            height: 150px;
+            background-color: transparent;
+            border: solid 4px #a1b965;
+            border-color: transparent transparent transparent #a1b965;
+            border-radius: 50%/120px 100px 0 0;
+            transform: rotate(-3deg) scale(1.1, 0.9);
+        }
+
+        #castle .shade-wrap #flower-wrap #petal1 {
+            position: absolute;
+            left: 97px;
+            top: 188px;
+            width: 25px;
+            height: 25px;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 10%;
+            border-bottom-left-radius: 50% 40%;
+            border-bottom-right-radius: 50% 40%;
+            background-color: #c82b60;
+            box-shadow: 1px -1px 1px 0 #6f1232;
+            transform: rotate(32deg) scale(1.6, 1.6);
+        }
+
+        #castle .shade-wrap #flower-wrap #petal1:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 10%;
+            border-bottom-left-radius: 50% 40%;
+            border-bottom-right-radius: 50% 40%;
+            background-color: transparent;
+            box-shadow: 0 0 10px 0 #e8b2ca;
+            opacity: 0.9;
+        }
+
+        #castle .shade-wrap #flower-wrap #petal1:after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 10%;
+            border-bottom-left-radius: 50% 40%;
+            border-bottom-right-radius: 50% 40%;
+            background-color: transparent;
+            box-shadow: 0 0 35px 0 #e8b2ca;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        #castle .shade-wrap #flower-wrap #petal2 {
+            position: absolute;
+            left: 85px;
+            top: 185px;
+            width: 25px;
+            height: 30px;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 50%;
+            border-bottom-left-radius: 50% 50%;
+            border-bottom-right-radius: 50% 10%;
+            background-color: #d05478;
+            transform: rotate(35deg) scale(1.2, 1);
+            box-shadow: 1px -1px 1px 0 #6f1232;
+            opacity: 0.9;
+        }
+
+        #castle .shade-wrap #flower-wrap #petal3 {
+            position: absolute;
+            left: 105px;
+            top: 197px;
+            width: 25px;
+            height: 28px;
+            border-top-left-radius: 50% 50%;
+            border-top-right-radius: 10% 10%;
+            border-bottom-left-radius: 10% 10%;
+            border-bottom-right-radius: 50% 50%;
+            background-color: #cb5275;
+            transform: rotate(25deg) scale(1, 1.05) skew(-8deg);
+            box-shadow: 1px -1px 1px 0 #6f1232;
+            opacity: 0.9;
+        }
+
+        #castle .shade-wrap #flower-wrap #petal4 {
+            position: absolute;
+            left: 80px;
+            top: 191px;
+            width: 25px;
+            height: 25px;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 50%;
+            border-bottom-left-radius: 50% 50%;
+            border-bottom-right-radius: 50% 10%;
+            background-color: #d26484;
+            transform: rotate(30deg) scale(1.1, 0.9) skew(10deg);
+            box-shadow: 1px -1px 1px 0 #a53d60;
+            opacity: 0.9;
+        }
+
+        #castle .shade-wrap #flower-wrap #petal5 {
+            position: absolute;
+            left: 105px;
+            top: 207px;
+            width: 25px;
+            height: 20px;
+            border-top-left-radius: 50% 50%;
+            border-top-right-radius: 10% 10%;
+            border-bottom-left-radius: 10% 10%;
+            border-bottom-right-radius: 50% 50%;
+            background-color: #d26484;
+            transform: rotate(28deg) scale(1, 1.05) skew(-18deg);
+            box-shadow: 1px -1px 1px 0 #a53d60;
+            opacity: 0.9;
+        }
+
+        #castle .shade-wrap #flower-wrap #falling-petal {
+            position: absolute;
+            left: 105px;
+            top: 209px;
+            width: 22px;
+            height: 18px;
+            border-top-left-radius: 50% 50%;
+            border-top-right-radius: 10% 10%;
+            border-bottom-left-radius: 10% 10%;
+            border-bottom-right-radius: 50% 50%;
+            background-color: #da7290;
+            transform: rotate(32deg) scale(0.9, 0.95) skew(-18deg);
+            box-shadow: 1px -1px 1px 0 #a53d60;
+            opacity: 0.9;
+            animation: 7s fall 4s ease-in-out infinite;
+        }
+
+        #castle .shade-wrap #flower-wrap #leaf1 {
+            position: absolute;
+            left: 75px;
+            top: 225px;
+            width: 13px;
+            height: 20px;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 50%;
+            border-bottom-left-radius: 50% 50%;
+            border-bottom-right-radius: 50% 10%;
+            background-color: #a1b965;
+            transform: rotate(5deg);
+        }
+
+        #castle .shade-wrap #flower-wrap #leaf2 {
+            position: absolute;
+            left: 82px;
+            top: 265px;
+            width: 12px;
+            height: 16px;
+            border-top-left-radius: 50% 10%;
+            border-top-right-radius: 50% 50%;
+            border-bottom-left-radius: 50% 50%;
+            border-bottom-right-radius: 50% 10%;
+            background-color: #a1b965;
+            transform: rotate(-97deg);
+        }
+
+        .dustDef {
+            position: absolute;
+            background-color: white;
+            border-radius: 100%;
+            box-shadow: 0 0 3px 1px white;
+            opacity: 0;
+        }
+
+        @keyframes hover {
+            0% {
+                margin-top: 60px;
+            }
+
+            50% {
+                margin-top: 50px;
+            }
+
+            100% {
+                margin-top: 60px;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 25px 0 #e8b2ca;
+            }
+
+            50% {
+                box-shadow: 0 0 45px 0 #e8b2ca;
+            }
+
+            100% {
+                box-shadow: 0 0 25px 0 #e8b2ca;
+            }
+        }
+
+        @keyframes fall {
+            5% {
+                top: 209px;
+                left: 105px;
+                transform: rotate(55deg) scale(0.9, 0.95) skew(-18deg);
+                opacity: 0.9;
+            }
+
+            30% {
+                left: 90px;
+            }
+
+            55% {
+                left: 130px;
+            }
+
+            60%,
+            100% {
+                top: 380px;
+                transform: rotate(30deg) scale(0.9, 0.95) skew(-32deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatAnimate {
+            0% {
+                background-size: 105% 120%;
+                background-position: 0 0;
+                opacity: 0.7;
+            }
+
+            50% {
+                background-size: 100% 100%;
+                background-position: 0 0;
+                opacity: 0.5;
+            }
+
+            100% {
+                background-size: 105% 120%;
+                background-position: 0 0;
+                opacity: 0.7;
+            }
+        }
+    </style>
+    <style>
+        svg {
+
+            width: 80%;
+            display: block;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        text {
+            fill: #e6668a;
+            font-family: consolas;
+            font-size: 9px;
+        }
+
+        p {
+            position: absolute;
+            z-index: 2
+        }
+
+        label {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            opacity: .8
+        }
+    </style>
 </head>
-<style>
-    ::selection {
-        background: rgba(255, 255, 0, 0.5);
-    }
-
-    body {
-        background: white;
-    }
-
-    .window {
-        width: 340px;
-        height: 340px;
-        background: #a0d5d3;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        margin-top: -60px;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        border: 10px solid #f8e7dc;
-        overflow: hidden;
-    }
-
-    .santa {
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    .santa .body {
-        width: 190px;
-        height: 210px;
-        background: #de2f32;
-        position: relative;
-        border-radius: 50%;
-        top: 0;
-        -webkit-animation: bodyLaugh 4s linear infinite;
-        -moz-animation: bodyLaugh 4s linear infinite;
-        -ms-animation: bodyLaugh 4s linear infinite;
-        -o-animation: bodyLaugh 4s linear infinite;
-        animation: bodyLaugh 4s linear infinite;
-        -webkit-transform: translateY(50%);
-        -moz-transform: translateY(50%);
-        -ms-transform: translateY(50%);
-        -o-transform: translateY(50%);
-        transform: translateY(50%);
-    }
-
-    .santa .body:before {
-        content: " ";
-        width: 7px;
-        height: 7px;
-        background: #f7be10;
-        border-radius: 50%;
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        box-shadow: 0px -18px 0px #f7be10, 0px 18px 0px #f7be10;
-    }
-
-    .santa .head {
-        z-index: 2;
-        position: absolute;
-        bottom: 90px;
-        left: 50%;
-        -webkit-animation: headLaugh 4s linear infinite;
-        -moz-animation: headLaugh 4s linear infinite;
-        -ms-animation: headLaugh 4s linear infinite;
-        -o-animation: headLaugh 4s linear infinite;
-        animation: headLaugh 4s linear infinite;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    .santa .head .face {
-        width: 120px;
-        height: 130px;
-        background: #edcab0;
-        background: radial-gradient(#edcab0, #e9a982);
-        border-radius: 50%;
-        border: 3px solid #f8e7dc;
-    }
-
-    .santa .head .face .redhat .whitepart {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-        width: 90%;
-        height: 32px;
-        background: #f8e7dc;
-        border-radius: 50px;
-        z-index: 4;
-        box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.1);
-    }
-
-    .santa .head .face .redhat .redpart {
-        width: 120px;
-        height: 120px;
-        background: #de2f32;
-        position: absolute;
-        top: -50px;
-        left: 15px;
-        border-radius: 50%;
-        z-index: -1;
-    }
-
-    .santa .head .face .redhat .redpart:before {
-        content: " ";
-        width: 95px;
-        height: 95px;
-        position: absolute;
-        left: 0;
-        top: 12px;
-        border-radius: 50%;
-        box-shadow: inset -8px -1px 0px -5px rgba(0, 0, 0, 0.05);
-    }
-
-    .santa .head .face .redhat .redpart:after {
-        content: " ";
-        position: absolute;
-        right: 0;
-        top: 60px;
-        background: #de2f32;
-        width: 20px;
-        height: 50px;
-    }
-
-    .santa .head .face .redhat .hatball {
-        width: 38px;
-        height: 38px;
-        background: #f8e7dc;
-        border-radius: 50%;
-        z-index: 5;
-        position: absolute;
-        right: -20px;
-        top: 40px;
-        box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.1);
-    }
-
-    .santa .head .face .eyes {
-        position: absolute;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-        top: 57px;
-    }
-
-    .santa .head .face .eyes:before,
-    .santa .head .face .eyes:after {
-        content: " ";
-        position: absolute;
-        width: 15px;
-        height: 9px;
-        top: 0;
-        border: 5px solid #a8744f;
-        border-width: 0;
-        border-top-width: 5px;
-        border-radius: 50%;
-    }
-
-    .santa .head .face .eyes:before {
-        left: -28px;
-    }
-
-    .santa .head .face .eyes:after {
-        right: -28px;
-    }
-
-    .santa .head .face .beard {
-        width: 55px;
-        height: 55px;
-        background: #f8e7dc;
-        border-radius: 50%;
-        position: absolute;
-        bottom: -30px;
-        left: 50%;
-        -webkit-animation: beardLaugh 4s linear infinite;
-        -moz-animation: beardLaugh 4s linear infinite;
-        -ms-animation: beardLaugh 4s linear infinite;
-        -o-animation: beardLaugh 4s linear infinite;
-        animation: beardLaugh 4s linear infinite;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    .santa .head .face .beard:before,
-    .santa .head .face .beard:after {
-        content: " ";
-        width: 80px;
-        height: 80px;
-        background: #f8e7dc;
-        border-radius: 50%;
-        position: absolute;
-        bottom: 15px;
-    }
-
-    .santa .head .face .beard:before {
-        left: -40px;
-    }
-
-    .santa .head .face .beard:after {
-        right: -40px;
-    }
-
-    .santa .head .face .beard .nouse {
-        width: 25px;
-        height: 20px;
-        border-radius: 50%;
-        background: #edcab0;
-        position: absolute;
-        z-index: 3;
-        box-shadow: inset -3px -3px 0px #e9a982;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-        top: -42px;
-    }
-
-    .santa .head .face .beard .mouth {
-        background: #a8744f;
-        z-index: 3;
-        position: absolute;
-        width: 15px;
-        height: 5px;
-        border-bottom-right-radius: 80px 50px;
-        border-bottom-left-radius: 80px 50px;
-        left: 50%;
-        top: 0;
-        -webkit-animation: mouthLaugh 4s linear infinite;
-        -moz-animation: mouthLaugh 4s linear infinite;
-        -ms-animation: mouthLaugh 4s linear infinite;
-        -o-animation: mouthLaugh 4s linear infinite;
-        animation: mouthLaugh 4s linear infinite;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    .santa .head .ears:before,
-    .santa .head .ears:after {
-        content: " ";
-        width: 20px;
-        height: 30px;
-        border-radius: 50%;
-        background: radial-gradient(#e9a982, #edcab0);
-        position: absolute;
-        top: 50%;
-        z-index: -1;
-    }
-
-    .santa .head .ears:before {
-        left: -8px;
-        -webkit-transform: rotate(-10deg);
-        -moz-transform: rotate(-10deg);
-        -ms-transform: rotate(-10deg);
-        -o-transform: rotate(-10deg);
-        transform: rotate(-10deg);
-    }
-
-    .santa .head .ears:after {
-        right: -8px;
-        -webkit-transform: rotate(10deg);
-        -moz-transform: rotate(10deg);
-        -ms-transform: rotate(10deg);
-        -o-transform: rotate(10deg);
-        transform: rotate(10deg);
-    }
-
-    @font-face {
-        font-family: 'Mountains of Christmas';
-        font-style: normal;
-        src: local("Mountains of Christmas"), local("MountainsofChristmas-Regular"), url(https://fonts.gstatic.com/s/mountainsofchristmas/v8/dVGBFPwd6G44IWDbQtPewylJhLDHyIrT3I5b5eGTHmw.woff2) format("woff2");
-    }
-
-    .message {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin-top: 80px;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-        color: #f8e7dc;
-        font-family: 'Mountains of Christmas';
-    }
-
-    .message h1 {
-        font-style: normal;
-        font-size: 75px;
-        margin-bottom: 0;
-        white-space: nowrap;
-    }
-
-    .message h2 {
-        margin: 0;
-        font-size: 20px;
-        text-align: center;
-        white-space: nowrap;
-    }
-
-    .message h2 a {
-        color: #f7be10;
-        opacity: 0.8;
-    }
-
-    .message h2 a:hover {
-        opacity: 1;
-    }
-
-    @-webkit-keyframes bodyLaugh {
-        0% {
-            top: 0px;
-        }
-
-        2% {
-            top: -3px;
-        }
-
-        4% {
-            top: 0px;
-        }
-
-        8% {
-            top: -3px;
-        }
-
-        10% {
-            top: 0px;
-        }
-
-        12% {
-            top: -3px;
-        }
-
-        14% {
-            top: 0px;
-        }
-
-        18% {
-            top: -3px;
-        }
-
-        20% {
-            top: 0px;
-        }
-
-        22% {
-            top: -3px;
-        }
-
-        24% {
-            top: 0px;
-        }
-
-        28% {
-            top: -3px;
-        }
-
-        30% {
-            top: 0px;
-        }
-
-        100% {
-            top: 0px;
-        }
-    }
-
-    @-moz-keyframes bodyLaugh {
-        0% {
-            top: 0px;
-        }
-
-        2% {
-            top: -3px;
-        }
-
-        4% {
-            top: 0px;
-        }
-
-        8% {
-            top: -3px;
-        }
-
-        10% {
-            top: 0px;
-        }
-
-        12% {
-            top: -3px;
-        }
-
-        14% {
-            top: 0px;
-        }
-
-        18% {
-            top: -3px;
-        }
-
-        20% {
-            top: 0px;
-        }
-
-        22% {
-            top: -3px;
-        }
-
-        24% {
-            top: 0px;
-        }
-
-        28% {
-            top: -3px;
-        }
-
-        30% {
-            top: 0px;
-        }
-
-        100% {
-            top: 0px;
-        }
-    }
-
-    @-ms-keyframes bodyLaugh {
-        0% {
-            top: 0px;
-        }
-
-        2% {
-            top: -3px;
-        }
-
-        4% {
-            top: 0px;
-        }
-
-        8% {
-            top: -3px;
-        }
-
-        10% {
-            top: 0px;
-        }
-
-        12% {
-            top: -3px;
-        }
-
-        14% {
-            top: 0px;
-        }
-
-        18% {
-            top: -3px;
-        }
-
-        20% {
-            top: 0px;
-        }
-
-        22% {
-            top: -3px;
-        }
-
-        24% {
-            top: 0px;
-        }
-
-        28% {
-            top: -3px;
-        }
-
-        30% {
-            top: 0px;
-        }
-
-        100% {
-            top: 0px;
-        }
-    }
-
-    @keyframes bodyLaugh {
-        0% {
-            top: 0px;
-        }
-
-        2% {
-            top: -3px;
-        }
-
-        4% {
-            top: 0px;
-        }
-
-        8% {
-            top: -3px;
-        }
-
-        10% {
-            top: 0px;
-        }
-
-        12% {
-            top: -3px;
-        }
-
-        14% {
-            top: 0px;
-        }
-
-        18% {
-            top: -3px;
-        }
-
-        20% {
-            top: 0px;
-        }
-
-        22% {
-            top: -3px;
-        }
-
-        24% {
-            top: 0px;
-        }
-
-        28% {
-            top: -3px;
-        }
-
-        30% {
-            top: 0px;
-        }
-
-        100% {
-            top: 0px;
-        }
-    }
-
-    @-webkit-keyframes beardLaugh {
-        0% {
-            bottom: -28px;
-        }
-
-        2% {
-            bottom: -30px;
-        }
-
-        4% {
-            bottom: -28px;
-        }
-
-        8% {
-            bottom: -30px;
-        }
-
-        10% {
-            bottom: -28px;
-        }
-
-        12% {
-            bottom: -30px;
-        }
-
-        14% {
-            bottom: -28px;
-        }
-
-        18% {
-            bottom: -30px;
-        }
-
-        20% {
-            bottom: -28px;
-        }
-
-        22% {
-            bottom: -30px;
-        }
-
-        24% {
-            bottom: -28px;
-        }
-
-        28% {
-            bottom: -30px;
-        }
-
-        30% {
-            bottom: -28px;
-        }
-
-        100% {
-            bottom: -28px;
-        }
-    }
-
-    @-moz-keyframes beardLaugh {
-        0% {
-            bottom: -28px;
-        }
-
-        2% {
-            bottom: -30px;
-        }
-
-        4% {
-            bottom: -28px;
-        }
-
-        8% {
-            bottom: -30px;
-        }
-
-        10% {
-            bottom: -28px;
-        }
-
-        12% {
-            bottom: -30px;
-        }
-
-        14% {
-            bottom: -28px;
-        }
-
-        18% {
-            bottom: -30px;
-        }
-
-        20% {
-            bottom: -28px;
-        }
-
-        22% {
-            bottom: -30px;
-        }
-
-        24% {
-            bottom: -28px;
-        }
-
-        28% {
-            bottom: -30px;
-        }
-
-        30% {
-            bottom: -28px;
-        }
-
-        100% {
-            bottom: -28px;
-        }
-    }
-
-    @-ms-keyframes beardLaugh {
-        0% {
-            bottom: -28px;
-        }
-
-        2% {
-            bottom: -30px;
-        }
-
-        4% {
-            bottom: -28px;
-        }
-
-        8% {
-            bottom: -30px;
-        }
-
-        10% {
-            bottom: -28px;
-        }
-
-        12% {
-            bottom: -30px;
-        }
-
-        14% {
-            bottom: -28px;
-        }
-
-        18% {
-            bottom: -30px;
-        }
-
-        20% {
-            bottom: -28px;
-        }
-
-        22% {
-            bottom: -30px;
-        }
-
-        24% {
-            bottom: -28px;
-        }
-
-        28% {
-            bottom: -30px;
-        }
-
-        30% {
-            bottom: -28px;
-        }
-
-        100% {
-            bottom: -28px;
-        }
-    }
-
-    @keyframes beardLaugh {
-        0% {
-            bottom: -28px;
-        }
-
-        2% {
-            bottom: -30px;
-        }
-
-        4% {
-            bottom: -28px;
-        }
-
-        8% {
-            bottom: -30px;
-        }
-
-        10% {
-            bottom: -28px;
-        }
-
-        12% {
-            bottom: -30px;
-        }
-
-        14% {
-            bottom: -28px;
-        }
-
-        18% {
-            bottom: -30px;
-        }
-
-        20% {
-            bottom: -28px;
-        }
-
-        22% {
-            bottom: -30px;
-        }
-
-        24% {
-            bottom: -28px;
-        }
-
-        28% {
-            bottom: -30px;
-        }
-
-        30% {
-            bottom: -28px;
-        }
-
-        100% {
-            bottom: -28px;
-        }
-    }
-
-    @-webkit-keyframes headLaugh {
-        0% {
-            bottom: 83px;
-        }
-
-        45% {
-            bottom: 83px;
-        }
-
-        50% {
-            bottom: 90px;
-        }
-
-        92% {
-            bottom: 90px;
-        }
-
-        98% {
-            bottom: 83px;
-        }
-
-        100% {
-            bottom: 83px;
-        }
-    }
-
-    @-moz-keyframes headLaugh {
-        0% {
-            bottom: 83px;
-        }
-
-        45% {
-            bottom: 83px;
-        }
-
-        50% {
-            bottom: 90px;
-        }
-
-        92% {
-            bottom: 90px;
-        }
-
-        98% {
-            bottom: 83px;
-        }
-
-        100% {
-            bottom: 83px;
-        }
-    }
-
-    @-ms-keyframes headLaugh {
-        0% {
-            bottom: 83px;
-        }
-
-        45% {
-            bottom: 83px;
-        }
-
-        50% {
-            bottom: 90px;
-        }
-
-        92% {
-            bottom: 90px;
-        }
-
-        98% {
-            bottom: 83px;
-        }
-
-        100% {
-            bottom: 83px;
-        }
-    }
-
-    @keyframes headLaugh {
-        0% {
-            bottom: 83px;
-        }
-
-        45% {
-            bottom: 83px;
-        }
-
-        50% {
-            bottom: 90px;
-        }
-
-        92% {
-            bottom: 90px;
-        }
-
-        98% {
-            bottom: 83px;
-        }
-
-        100% {
-            bottom: 83px;
-        }
-    }
-
-    @-webkit-keyframes mouthLaugh {
-        0% {
-            width: 20px;
-        }
-
-        45% {
-            width: 20px;
-        }
-
-        50% {
-            width: 15px;
-        }
 
-        92% {
-            width: 15px;
-        }
-
-        98% {
-            width: 20px;
-        }
-
-        100% {
-            width: 20px;
-        }
-    }
-
-    @-moz-keyframes mouthLaugh {
-        0% {
-            width: 20px;
-        }
-
-        45% {
-            width: 20px;
-        }
-
-        50% {
-            width: 15px;
-        }
-
-        92% {
-            width: 15px;
-        }
-
-        98% {
-            width: 20px;
-        }
-
-        100% {
-            width: 20px;
-        }
-    }
-
-    @-ms-keyframes mouthLaugh {
-        0% {
-            width: 20px;
-        }
-
-        45% {
-            width: 20px;
-        }
-
-        50% {
-            width: 15px;
-        }
-
-        92% {
-            width: 15px;
-        }
-
-        98% {
-            width: 20px;
-        }
-
-        100% {
-            width: 20px;
-        }
-    }
-
-    @keyframes mouthLaugh {
-        0% {
-            width: 20px;
-        }
-
-        45% {
-            width: 20px;
-        }
-
-        50% {
-            width: 15px;
-        }
-
-        92% {
-            width: 15px;
-        }
-
-        98% {
-            width: 20px;
-        }
-
-        100% {
-            width: 20px;
-        }
-    }
-
-
-    /* abc  */
-
-.christmas{
-    display: none;
-}
-  
-.christmas:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-10deg);
-  background-image: radial-gradient(circle at 30% 30%, #fff 1.5%, transparent 2.5%), radial-gradient(circle at 80% 70%, #fff 1.5%, transparent 2.5%), radial-gradient(circle at 30% 50%, #fff 1%, transparent 2%), radial-gradient(circle at 70% 85%, #fff 1%, transparent 2%);
-  background-size: 10% 30%;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  -webkit-animation: snow 3s linear infinite ;
-          animation: snow 3s linear infinite ;
-}
-@-webkit-keyframes snow {
-  100% {
-    background-position: 0px 200px, 0 200px, 0px 200px, 0px 200px;
-  }
-}
-@keyframes snow {
-  100% {
-    background-position: 0px 200px, 0 200px, 0px 200px, 0px 200px;
-  }
-}
-
-
-</style>
-
-<body id="body" style="display:flex; align-items: center;justify-content: center;height: 100vh;">
-    
-    <div id="btn" style="width:30%;">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 150 88.4" enable-background="new 0 0 150 88.4" xml:space="preserve" style="fill: rgb(0, 0, 0);" role="img" aria-label="Valentine Envelope Line Icon">
-            <path d="M60.1,38.6c3.4-3.4,9-3.4,12.4,0l1.2,1.1l1.2-1.1c3.4-3.4,9-3.4,12.4,0c0.4,0.4,0.7,0.7,1,1.1L140,4.8H10.1  L60.1,38.6L60.1,38.6z" style="fill: none;"></path>
-            <path d="M89.8,44.8c0,2.3-0.9,4.6-2.6,6.2L75.4,62.9c-0.5,0.5-1.1,0.7-1.7,0.7s-1.2-0.2-1.7-0.7L60.1,51  c-1.7-1.7-2.6-3.9-2.6-6.2c0-0.7,0.1-1.3,0.2-2L4.8,7.2v75.4c0,0.6,0.5,1,1,1h138.3c0.6,0,1-0.5,1-1V7.2L89.8,44.5  C89.8,44.6,89.8,44.7,89.8,44.8z" style="fill: none;"></path>
-            <g id="__id2_s23t51u2c"><path d="M148.8,2.3c0-0.1-0.1-0.2-0.2-0.3c-0.3-0.3-0.6-0.6-0.9-0.8c-0.4-0.2-0.8-0.3-1.2-0.3c0.4,0,0.9,0.1,1.2,0.3  c-1-0.8-2.2-1.2-3.6-1.2H5.9C4.5,0,3.3,0.5,2.3,1.2C2.1,1.3,1.9,1.5,1.8,1.7C1.7,1.8,1.5,1.9,1.4,2C0.5,3.1,0,4.4,0,5.9v76.7  c0,3.2,2.6,5.9,5.9,5.9h138.3c3.2,0,5.9-2.6,5.9-5.9V5.9C150,4.5,149.5,3.3,148.8,2.3z M147.9,5.4l-2.7,1.8v75.4c0,0.6-0.5,1-1,1  H5.9c-0.6,0-1-0.5-1-1V7.2L2.1,5.3l2.7,1.8V5.9c0-0.6,0.5-1,1-1h0.1c-0.6,0-1,0.5-1,1v1.3l52.9,35.6c0.3-1.6,1.1-3.1,2.3-4.2  l-50-33.7H10L4.8,1.3L10,4.8h130L88.2,39.7c1,1.4,1.5,3,1.6,4.8l55.3-37.3V5.9c0.1-0.6-0.4-1.1-1-1.1h0.1c0.6,0,1,0.5,1,1v1.3  L147.9,5.4c0.7-0.5,1-1.3,1.1-2C149,4.2,148.6,5,147.9,5.4z" style="fill: rgb(169, 216, 221);"></path></g>
-            <g id="__id3_s23t51u2c"><path d="M90.2,43.7c-0.1-1.8-0.6-3.4-1.6-4.9c-0.3-0.4-0.6-0.8-1-1.2c-3.5-3.5-9.2-3.5-12.7,0l-1.2,1.2l-1.2-1.2  c-3.5-3.5-9.2-3.5-12.7,0c0,0,0,0,0,0c-1.2,1.2-2,2.7-2.4,4.4c-0.1,0.6-0.2,1.3-0.2,2c0,2.4,0.9,4.7,2.6,6.4L72,62.5  c0.5,0.5,1.1,0.7,1.8,0.7c0.6,0,1.3-0.2,1.8-0.7l12.1-12.1c1.7-1.7,2.6-4,2.6-6.4C90.3,43.9,90.2,43.8,90.2,43.7z M73.7,57.3  L63.3,46.9c-0.4-0.4-0.7-0.9-0.9-1.5c-0.2-0.4-0.2-0.9-0.2-1.4c0-1.1,0.4-2.1,1.2-2.9c0.2-0.2,0.5-0.4,0.8-0.6  c0.6-0.4,1.3-0.6,2.1-0.6c1.1,0,2.1,0.4,2.9,1.2l2.9,2.9c1,1,2.5,1,3.5,0l2.9-2.9c1.6-1.6,4.1-1.6,5.7,0c0.1,0.1,0.2,0.3,0.4,0.4  c1.2,1.6,1.1,3.8-0.4,5.3l-2.9,2.9L73.7,57.3z" style="fill: rgb(207, 94, 116);"></path></g>
-            </svg>
-            <h1 style="text-align: center;color:#de2f32">Nhấn vào thư nhé !!!</h1>
-    </div>
-   
-   <div class="christmas" >
-    <div class="message">
-        <h1>Merry Christmas!</h1>
-        <h2>Giáng sinh vui vẻ. Yêu Em♥</h2>
-    </div>
-    <div class="window ">
-        <div class="santa">
-            <div class="head">
-                <div class="face">
-                    <div class="redhat">
-                        <div class="whitepart"></div>
-                        <div class="redpart"></div>
-                        <div class="hatball"></div>
-                    </div>
-                    <div class="eyes"></div>
-                    <div class="beard">
-                        <div class="nouse"></div>
-                        <div class="mouth"></div>
-                    </div>
-                </div>
-                <div class="ears"></div>
+<body>
+
+    <svg style="display: none;" id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148"
+        xml:space="preserve">
+        <defs>
+            <filter id="f" filterUnits="userSpaceOnUse" x="-120" y="-30" width="120%" height="120%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"></feGaussianBlur>
+                <feOffset in="blur" dx="3" dy="5" result="shadow"></feOffset>
+                <feFlood flood-color="rgba(3,0,0,1)" result="color" />
+                <feComposite in="color" in2="shadow" operator="in" />
+                <feComposite in="SourceGraphic" />
+            </filter>
+            <path id="shape" d="M0, 21.054 
+       C0, 21.054 24.618, -15.165 60.750, 8.554 
+       C93.249, 29.888 57.749, 96.888 0, 117.388
+       C-57.749, 96.888  -93.249, 29.888 -60.750, 8.554
+       C-24.618, -15.165  -0, 21.054 -0, 21.054z    
+    " />
+            <path id="partialPath" />
+
+        </defs>
+
+        <text dy="-2">
+            <textPath style="font-family: fantasy;" xlink:href="#partialPath" startOffset="12">
+                Chúc Mừng Ngày 8-3
+                🌹...........................................................................................................................................🫶Yêu Em ❤️💕......................................
+            </textPath>
+        </text>
+
+        <use id="useThePath" xlink:href="#partialPath" stroke="white" stroke-width=".5" stroke-opacity=".5" fill="none"
+            style="display:none;" />
+    </svg>
+
+    <script>
+        let rid = null; // request animation id
+        const SVG_NS = "http://www.w3.org/2000/svg";
+        const pathlength = shape.getTotalLength();
+
+        let t = 0; // at the begining of the path
+        let lengthAtT = pathlength * t;
+
+        let d = shape.getAttribute("d");
+
+        // 1. build the d array
+        let n = d.match(/C/gi).length; // how many times
+
+        let pos = 0; // the position, used to find the indexOf the nth C
+
+        class subPath {
+            constructor(d) {
+                this.d = d;
+                this.get_PointsRy();
+                this.previous = subpaths.length > 0 ? subpaths[subpaths.length - 1] : null;
+                this.measurePath();
+                this.get_M_Point(); //lastPoint
+                this.lastCubicBezier;
+                this.get_lastCubicBezier();
+            }
+
+            get_PointsRy() {
+                this.pointsRy = [];
+                let temp = this.d.split(/[A-Z,a-z\s,]/).filter(v => v); // remove empty elements
+                temp.map(item => {
+                    this.pointsRy.push(parseFloat(item));
+                }); //this.pointsRy numbers not strings
+            }
+
+            measurePath() {
+                let path = document.createElementNS(SVG_NS, "path");
+                path.setAttributeNS(null, "d", this.d);
+                // no need to append it to the SVG
+                // the lengths of every path in dry
+                this.pathLength = path.getTotalLength();
+            }
+
+            get_M_Point() {
+                if (this.previous) {
+                    let p = this.previous.pointsRy;
+                    let l = p.length;
+                    this.M_point = [p[l - 2], p[l - 1]];
+                } else {
+                    let p = this.pointsRy;
+                    this.M_point = [p[0], p[1]];
+                }
+            }
+
+            get_lastCubicBezier() {
+                let lastIndexOfC = this.d.lastIndexOf("C");
+                let temp = this.d
+                    .substring(lastIndexOfC + 1)
+                    .split(/[\s,]/)
+                    .filter(v => v);
+                let _temp = [];
+                temp.map(item => {
+                    _temp.push(parseFloat(item));
+                });
+                this.lastCubicBezier = [this.M_point];
+                for (let i = 0; i < _temp.length; i += 2) {
+                    this.lastCubicBezier.push(_temp.slice(i, i + 2));
+                }
+            }
+        }
+
+        let subpaths = [];
+
+        // create new subPaths
+        for (let i = 0; i < n; i++) {
+            // finds the of nth C in d
+            let newpos = d.indexOf("C", pos + 1);
+            if (i > 0) {
+                // if it's not the first C
+                let sPath = new subPath(d.substring(0, newpos));
+                subpaths.push(sPath);
+            }
+            //change the value of the position pos
+            pos = newpos;
+        }
+        // at the end add d to the subpaths array
+        subpaths.push(new subPath(d));
+
+        // 2. get the index of the bezierLengths where the point at t is
+        let index;
+        for (index = 0; index < subpaths.length; index++) {
+            if (subpaths[index].pathLength >= lengthAtT) {
+                break;
+            }
+        }
+
+        function get_T(t, index) {
+            let T;
+            lengthAtT = pathlength * t;
+            if (index > 0) {
+                T =
+                    (lengthAtT - subpaths[index].previous.pathLength) /
+                    (subpaths[index].pathLength - subpaths[index].previous.pathLength);
+            } else {
+                T = lengthAtT / subpaths[index].pathLength;
+            }
+            //console.log(T)
+            return T;
+        }
+
+        let T = get_T(t, index);
+
+        let newPoints = getBezierPoints(T, subpaths[index].lastCubicBezier);
+
+        drawCBezier(newPoints, partialPath, index);
+
+        function getBezierPoints(t, points) {
+            let helperPoints = [];
+
+            // helper points 0,1,2
+            for (let i = 1; i < 4; i++) {
+                //points.length must be 4 !!!
+                let p = lerp(points[i - 1], points[i], t);
+                helperPoints.push(p);
+            }
+
+            // helper points 3,4
+            helperPoints.push(lerp(helperPoints[0], helperPoints[1], t));
+            helperPoints.push(lerp(helperPoints[1], helperPoints[2], t));
+
+            // helper point 5 is where the first Bézier ends and where the second Bézier begins
+            helperPoints.push(lerp(helperPoints[3], helperPoints[4], t));
+
+            // points for the dynamic bézier
+            let firstBezier = [
+                points[0],
+                helperPoints[0],
+                helperPoints[3],
+                helperPoints[5]
+            ];
+            //console.log(firstBezier)
+            return firstBezier;
+        }
+
+        function lerp(A, B, t) {
+            // a virtual line from A to B
+            // get the position of a point on this line
+            // if(t == .5) the point in in the center of the line
+            // 0 <= t <= 1
+            let ry = [
+                (B[0] - A[0]) * t + A[0], //x
+                (B[1] - A[1]) * t + A[1] //y
+            ];
+            return ry;
+        }
+
+        function drawCBezier(points, path, index) {
+            let d;
+
+            if (index > 0) {
+                d = subpaths[index].previous.d;
+            } else {
+                d = `M${points[0][0]},${points[0][1]} C`;
+            }
+
+            // points.length == 4
+            for (let i = 1; i < 4; i++) {
+                d += ` ${points[i][0]},${points[i][1]} `;
+            }
+            //console.log(d)
+            partialPath.setAttributeNS(null, "d", d);
+        }
+
+        /*
+        _t.addEventListener("input", ()=>{
+          t = _t.value;
+          lengthAtT = pathlength*t;
+          for(index = 0; index < subpaths.length; index++){
+        if(subpaths[index].pathLength >= lengthAtT){break; }  
+        }
+          T = get_T(t, index); 
+          newPoints = getBezierPoints(T,subpaths[index].lastCubicBezier);
+          drawCBezier(newPoints, partialPath, index);
+        })*/
+
+        t = 0.025;
+
+
+        Typing();
+        theSvg.addEventListener("click", () => {
+            if (rid) {
+                window.cancelAnimationFrame(rid);
+                rid = null;
+            } else {
+                if (t >= 1) {
+                    t = 0.025;
+                }
+                rid = window.requestAnimationFrame(Typing);
+            }
+        });
+
+        cb.addEventListener("input", () => {
+            if (cb.checked) {
+                useThePath.style.display = "block";
+            } else {
+                useThePath.style.display = "none";
+            }
+        });
+    </script>
+
+    <div id="castle" style="display: none;">
+        <div id="table"></div>
+        <div class="shade-wrap hover-animation" id="main">
+            <div id="flower-wrap">
+                <div id="stem"></div>
+                <div id="petal1"></div>
+                <div id="petal2"></div>
+                <div id="petal3"></div>
+                <div id="petal4"></div>
+                <div id="petal5"></div>
+                <div id="falling-petal"></div>
+                <div id="leaf1"></div>
+                <div id="leaf2"></div>
             </div>
-            <div class="body"></div>
+        </div>
+        <div class="shade-wrap" id="sub">
+            <div id="shade-main-reflections"></div>
+            <div id="shade-main">
+                <div id="shade-handle-big"></div>
+                <div id="shade-handle-small"></div>
+                <div id="top-reflection"></div>
+                <div id="bottom-shade"></div>
+            </div>
         </div>
     </div>
-   
-   </div>
-   <script>
-        document.querySelector("#btn").onclick = function (){
-            document.querySelector("#btn").style.display='none';
-            document.querySelector(".christmas").style.display='block';
-            document.querySelector("#body").style.background="#de2f32";
-        }
-   </script>
+
+
+    <div class="container" id="rose-t">
+        <svg viewBox="0 0 512 512">
+            <path class="leafOne" d="M124.302,328.222c-2.466-2.901-5.036-5.334-7.648-7.212c-1.884-1.354-4.49-1.207-6.201,0.36
+                                    c-32.608,29.866-18.892,84.017,24.01,94.752c2.251,0.563,4.612-0.548,5.624-2.636c0.407-0.841,0.781-1.732,1.138-2.648
+                                    C111.438,394.378,103.302,355.204,124.302,328.222z" />
+            <path class="stickLine"
+                d="M337.625,212.314c2.37-3.44,1.501-8.149-1.939-10.519c-3.44-2.369-8.15-1.501-10.519,1.939
+                                     c-19.493,28.304-43.492,60.076-72.147,92.853l-2.542-30.875c-0.343-4.163-4-7.261-8.158-6.917c-4.163,0.343-7.26,3.995-6.917,8.158
+                                     l3.721,45.196C172.176,385.546,93.558,449.444,4.053,496.37c-3.699,1.94-5.127,6.512-3.187,10.211
+                                     c1.352,2.579,3.983,4.054,6.705,4.054c1.183,0,2.385-0.279,3.505-0.867c63.84-33.47,124.784-76.962,181.511-129.479
+                                     c5.891-2.031,32.15-10.225,68.671-8.819c4.156,0.167,7.689-3.09,7.85-7.266c0.161-4.174-3.092-7.689-7.267-7.849
+                                     c-18.678-0.721-34.824,0.89-47.384,3.036C259.688,314.785,301.126,265.31,337.625,212.314z" />
+            <path class="leafTwo" d="M329.58,413.715c30.055,1.827,57.188-13.413,71.993-37.343c1.738-2.81,1.253-6.495-1.142-8.771
+                                   c-13.04-12.394-37.78-21.675-66.625-23.428s-54.527,4.464-68.972,15.187c-2.653,1.969-3.581,5.568-2.196,8.568
+                                   C274.438,393.475,299.525,411.888,329.58,413.715z" />
+            <path class="leafS1" d="M370.677,231.945c-8.984-2.411-17.479-7.138-24.516-14.205c-5.085-5.106-8.742-10.981-11.143-17.242
+                                  c-6.645,0.902-13.554,0.516-20.475-1.491c-9.578-2.778-17.805-7.959-24.234-14.68c-12.216,1.01-22.611,4.593-28.859,9.642
+                                  c-1.416,1.145-1.839,3.149-0.999,4.772c7.157,13.821,21.478,23.41,38.131,23.745c11.548,0.232,22.109-4.035,30.031-11.178
+                                  c-2.461,10.379-1.13,21.692,4.621,31.709c8.293,14.445,23.583,22.401,39.142,22.039c1.826-0.042,3.382-1.376,3.705-3.168
+                                  C377.509,253.982,375.658,243.144,370.677,231.945z" />
+            <path class="rose1" d="M508.212,99.848c-2.666-4.581-27.324-44.843-71.558-48.206c-4.268-0.223-8.58-0.164-12.816,0.176
+                                l-1.148,0.092l0.471,1.051c7.005,15.648,9.002,31.447,7.106,48.307l0.877,0.04c11.782,0.538,23.679,3.513,35.362,8.841l0.367,0.168
+                                l0.355-0.188c10.841-5.728,22.445-6.783,35.477-3.225C506.927,108.058,510.397,103.599,508.212,99.848z M452.476,54.541c-4.96-1.457-10.233-2.474-15.823-2.899c-4.268-0.223-8.58-0.164-12.816,0.176
+                                l-1.148,0.092l0.471,1.051c7.005,15.648,9.002,31.447,7.106,48.307l0.877,0.04c9.334,0.426,18.74,2.407,28.055,5.851
+                                C461.04,88.852,458.784,71.19,452.476,54.541z" />
+
+            <path class="rose2" d="M418.642,40.96c-24.19-37.169-71.346-39.455-76.643-39.593c-4.34-0.114-6.582,5.071-3.543,8.22
+                                 c9.38,9.721,14.029,20.406,14.212,32.665l0.005,0.402l0.324,0.242c13.637,10.194,23.714,22.558,29.944,36.731
+                                 c4.198,10.201,6.37,19.468,7.545,29.411l0.996-0.402c8.962-3.617,18.525-6.008,28.405-7.105c3.688-0.322,7.481-0.397,11.274-0.223
+                                 l0.762,0.035C434.378,79.498,430.171,59.623,418.642,40.96z " />
+
+            <path class="rose3" d="M343.8,146.676c13.018-17.726,29.06-30.524,47.682-38.039l0.576-0.232
+                                 c-1.161-9.857-3.49-19.395-7.611-29.408c-20.694-47.084-74.317-58.577-80.363-59.731c-4.853-0.927-8.31,4.471-5.489,8.546
+                                 c21.533,31.149,7.895,59.383-14.633,90.009l0.071,0.029c-16.953,26.497-7.863,61.237,18.513,76.865
+                                 c3.932,2.33,8.219,4.207,12.806,5.537c6.757,1.959,13.752,2.469,20.787,1.514l1.017-0.138l-0.367-0.959
+                                 C330.327,183.817,333.08,162.625,343.8,146.676z" />
+
+            <path class="rose4"
+                d="M510.726,141.7c-3.917-4.747-39.75-46.26-91.009-41.792c-21.664,2.405-52.653,12.308-77.277,45.856
+                                 c-13.392,19.922-16.495,52.272,4.132,72.986c3.371,3.385,7.075,6.243,11.008,8.573c26.325,15.597,61.186,6.961,76.309-20.683
+                                 l0.077,0.062c15.307-34.399,34.961-59.933,71.9-56.082C510.802,151.136,513.867,145.507,510.726,141.7z M370.903,162.627c27.904-38.017,75.307-57.751,121.144-38.743
+                                 c-16.072-12.613-41.381-26.674-72.329-23.977c-21.664,2.405-52.653,12.308-77.277,45.856c-13.392,19.922-16.495,52.272,4.132,72.986
+                                 c3.371,3.385,7.075,6.243,11.008,8.573c4.885,2.894,10.125,4.964,15.515,6.228C354.624,212.802,357.947,181.899,370.903,162.627z" />
+        </svg>
+        <p id="text-click" style=" display: none;   font-family: fantasy;
+        color: indianred;
+        font-size: 50px;
+        top: 80%;">Click me now !</p>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <!-- aa3 -->
+    <script>
+
+        (() => {
+            setTimeout(() => {
+                document.querySelector("#text-click").style.display="inherit";
+            }, 4000);
+            document.querySelector("#rose-t").onclick = function () {
+                document.querySelector("#rose-t").style.display = "none";
+                document.querySelector("#castle").style.display = "inherit";
+                document.querySelector("#theSvg").style.display = "inherit"
+
+                rid = window.requestAnimationFrame(Typing);
+                function Typing() {
+                    rid = window.requestAnimationFrame(Typing);
+                    if (t >= 1) {
+                        window.cancelAnimationFrame(rid);
+                        rid = null;
+                    } else {
+                        t += 0.0025;
+                    }
+
+                    lengthAtT = pathlength * t;
+                    for (index = 0; index < subpaths.length; index++) {
+                        if (subpaths[index].pathLength >= lengthAtT) {
+                            break;
+                        }
+                    }
+                    T = get_T(t, index);
+                    newPoints = getBezierPoints(T, subpaths[index].lastCubicBezier);
+                    drawCBezier(newPoints, partialPath, index);
+                }
+            }
+            const head = document.getElementsByTagName('head')[0];
+            let animationId = 1;
+
+            function CreateMagicDust(x1, x2, y1, y2, sizeRatio, fallingTime, animationDelay, node = 'main') {
+                let dust = document.createElement('span');
+                let animation = document.createElement('style');
+                animation.innerHTML = '\
+      @keyframes blink' + animationId + '{\
+          0% {\
+              top: ' + y1 + 'px;\
+              left: ' + x1 + 'px;\
+              width: ' + 2 * sizeRatio + 'px;\
+              height: ' + 2 * sizeRatio + 'px;\
+              opacity: .4\
+          }\
+          20% {\
+              width: ' + 4 * sizeRatio + 'px;\
+              height: ' + 4 * sizeRatio + 'px;\
+              opacity: .8\
+          }\
+          35% {\
+              width: ' + 2 * sizeRatio + 'px;\
+              height: ' + 2 * sizeRatio + 'px;\
+              opacity: .5\
+          }\
+          55% {\
+              width: ' + 3 * sizeRatio + 'px;\
+              height: ' + 3 * sizeRatio + 'px;\
+              opacity: .7\
+          }\
+          80% {\
+              width: ' + sizeRatio + 'px;\
+              height: ' + sizeRatio + 'px;\
+              opacity: .3\
+          }\
+          100% {\
+              top: ' + y2 + 'px;\
+              left: ' + x2 + 'px;\
+              width: ' + 0 + 'px;\
+              height: ' + 0 + 'px;\
+              opacity: .1\
+          }}';
+                head.appendChild(animation);
+                dust.classList.add('dustDef');
+                dust.setAttribute('style', `animation: blink${animationId++} ${fallingTime}s cubic-bezier(.71, .11, .68, .83) infinite ${animationDelay}s`);
+                document.getElementById(node).appendChild(dust);
+            }
+
+            // yes, I'm doing it manually to get the effect I want.. can be easily changed to render randomly
+            [[130, 132, 150, 152, .15, 2.5, .1, 'sub'],
+            [65, 63, 300, 299, .5, 2, .2, 'sub'],
+            [70, 70, 150, 150, .45, 2, .5],
+            [75, 78, 160, 170, .6, 2, 1],
+            [80, 82, 160, 180, .6, 1, .4],
+            [85, 100, 160, 170, .5, 2, .5],
+            [125, 110, 170, 180, .25, 3, 1.5],
+            [90, 90, 115, 115, .4, 2, 2],
+            [93, 95, 200, 200, .4, 3, 1.5],
+            [100, 100, 145, 155, .45, 1, .5],
+            [100, 90, 170, 230, .35, 2, .75],
+            [100, 102, 115, 112, .35, 3, .25],
+            [100, 95, 170, 200, .55, 1.5, .75],
+            [100, 97, 150, 190, .7, 2, 1.5],
+            [105, 100, 160, 180, .5, 1.5, .725],
+            [125, 125, 180, 190, .25, 1, .725],
+            [130, 130, 135, 135, .45, 3, 1.5],
+            [135, 132, 170, 190, .25, 2.5, .75],
+            [135, 132, 320, 315, .2, 5, .3, 'sub']
+            ].forEach((o) => CreateMagicDust(...o));
+
+        })();
+    </script>
+
+    <script>
+        var leafOne = document.querySelector('.leafOne');
+        var stickLine = document.querySelector('.stickLine');
+        var leafTwo = document.querySelector('.leafTwo');
+        var leafS1 = document.querySelector('.leafS1');
+        var rose1 = document.querySelector('.rose1');
+        var rose2 = document.querySelector('.rose2');
+        var rose3 = document.querySelector('.rose3');
+        var rose4 = document.querySelector('.rose4');
+
+        var lineDrawing = anime({
+            targets: [leafOne, stickLine, leafTwo, leafS1, rose1, rose2, rose3, rose4],
+            strokeDashoffset: [anime.setDashoffset, 0],
+            easing: 'easeInOutCubic',
+            duration: 4000,
+            begin: function (anim) {
+                //Leaf One
+                leafOne.setAttribute("stroke", "black");
+                leafOne.setAttribute("fill", "none");
+                // Leaf Two
+                leafTwo.setAttribute("stroke", "black");
+                leafTwo.setAttribute("fill", "none");
+                //Stick
+                stickLine.setAttribute("stroke", "black");
+                stickLine.setAttribute("fill", "none");
+                // Leaf S1
+                leafS1.setAttribute("stroke", "black");
+                leafS1.setAttribute("fill", "none");
+                //Rose One
+                rose1.setAttribute("stroke", "black");
+                rose1.setAttribute("fill", "none");
+                //Rose Two
+                rose2.setAttribute("stroke", "black");
+                rose2.setAttribute("fill", "none");
+                //Rose Three
+                rose3.setAttribute("stroke", "black");
+                rose3.setAttribute("fill", "none");
+                //Rose Three
+                rose4.setAttribute("stroke", "black");
+                rose4.setAttribute("fill", "none");
+            },
+            complete: function (anim) {
+                //Leaf One
+                leafOne.setAttribute("fill", "#9CDD05");
+                leafOne.setAttribute("stroke", "none");
+                //Leaf Two 
+                leafTwo.setAttribute("fill", "#9CDD05");
+                leafTwo.setAttribute("stroke", "none");
+                //Stick
+                stickLine.setAttribute("fill", "#83AA2E");
+                stickLine.setAttribute("stroke", "none");
+                // Leaf S1
+                leafS1.setAttribute("fill", "#9CDD05");
+                leafS1.setAttribute("stroke", "none");
+                // Rose 1
+                rose1.setAttribute("fill", "#F37D79");
+                rose1.setAttribute("stroke", "none");
+                // Rose 2
+                rose2.setAttribute("fill", "#D86666");
+                rose2.setAttribute("stroke", "none");
+                // Rose 3
+                rose3.setAttribute("fill", "#F37D79");
+                rose3.setAttribute("stroke", "none");
+                // Rose 3
+                rose4.setAttribute("fill", "#D86666");
+                rose4.setAttribute("stroke", "none");
+            },
+            autoplay: true,
+        });
+
+
+    </script>
 </body>
 
 </html>
